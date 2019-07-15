@@ -1,16 +1,15 @@
-xbox-remote-power
+Home Assistant - Xbox Remote Power
 ======================
+This is a fork of [xbox-remote-power](https://github.com/Schamper/xbox-remote-power) with the specific intention of making a python script that integrates with [Home Assistant](https://www.home-assistant.io/)
 
-**Please go to https://github.com/OpenXbox for continued development of this and much more.**
 
-This is a little script that can turn your Xbox One on remotely. It works over both LAN and WAN, provided you have port 5050 forwarded to your Xbox One.
-
-If you're looking for a complete SmartGlass implementation, take a look at [OpenXbox/xbox-smartglass-core-python](https://github.com/OpenXbox/xbox-smartglass-core-python).
+This is a little script that can turn your Xbox One on from Home Assistant.
 
 ## How to use
 
-You need three things for this to work:
-- Python 2 or 3 installed
+Download the `power_on_xbox.py` file from inside the `python_scripts` directory here to your local `python_scripts` directory, then reload `python_scripts` in Home Assistant.
+
+You need two parameters for this to work:
 - IP address of your Xbox One
 - Live device ID of your Xbox One
 
@@ -18,18 +17,10 @@ To find the IP of your Xbox, go to Settings -> Network -> Advanced settings.
 To find your Live device ID, go to Settings -> System -> Console info.
 NOTE: It's probably a good idea to keep this information a secret!
 
-If you want to use this over the internet, you'll also need port 5050 forwarded to your Xbox One.
-
-Run the script as follows, replacing <ip address> with the IP of your Xbox and <live id> with your Live device ID.
-
+Call service `python_script.power_on_xbox` with parameters:
 ```
-python xbox-remote-power.py -a <ip address> -i <live id>
+{
+    "ip":"192.168.1.x",
+    "live_id":"FD008AXXXXXXXXXX"
+}
 ```
-
-Alternatively, you can also run the script without any arguments and you'll be prompted for the IP and Live device ID.
-
-```
-python xbox-remote-power.py
-```
-
-There is also a "fire and forget" BAT script and shell script available. You will need to edit these files first and enter your IP and Live device ID before they will work.
